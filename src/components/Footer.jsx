@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#000] text-white pt-14 pb-3 bottom-0 w-full">
+    <footer className="bg-gradient-to-r from-[#810CA0] to-[#8C147E] text-white pt-14 pb-3 bottom-0 w-full">
       <div className="flex justify-between flex-col md:flex-row gap-[50px] md:gap-0">
         {/* LEFT START */}
         <div className="flex gap-[50px] md:gap-[75px] lg:gap-[200px] flex-col md:flex-row sm:flex-row md:justify-center">

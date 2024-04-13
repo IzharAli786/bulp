@@ -4,6 +4,7 @@ import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const teamMembers = [
   {
@@ -51,22 +52,86 @@ const Team = () => {
   const myElement = useRef(null);
   useEffect(() => {
     // Use gsap.to() to animate
-    gsap.from(myElement.current, {
+    gsap.to(myElement.current, {
       duration: 2.5,
       y: 100,
       opacity: 1,
       ease: "power2.out",
       scale: 1.3,
+      delay: 2,
     });
   }, []);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const element = myElement.current;
+
+    const animation = gsap.fromTo(
+      element,
+      {
+        x: -200,
+        autoAlpha: 0,
+        scale: 0.95,
+      },
+      {
+        x: 0,
+        autoAlpha: 1,
+        duration: 2,
+        scale: 1,
+        scrollTrigger: {
+          trigger: myElement.current,
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    return () => {
+      animation.kill(); // Proper cleanup to avoid memory leaks
+    };
+  }, []);
+
+  const teamCard = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const element = teamCard.current;
+    const animation = gsap.fromTo(
+      element,
+      {
+        x: -200,
+        autoAlpha: 0,
+        scale: 0.95,
+      },
+      {
+        x: 0,
+        autoAlpha: 1,
+        duration: 2,
+        scale: 1,
+        scrollTrigger: {
+          trigger: teamCard.current,
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    return () => {
+      animation.kill(); // Proper cleanup to avoid memory leaks
+    };
+  }, []);
+
   return (
     <>
       <Navbar />
-      <section>
+      <section ref={myElement}>
         <div className=" flex flex-col items-center justify-center min-h-screen bg-gray-200 py-10 mt-10">
           <h2 className="text-center text-6xl font-dancing font-bold text-purple-600 mb-16">
             Our Team
           </h2>
+          <h3 className="mb-3">
+            <span className="inline-block w-2 h-2 bg-purple-700 rounded-full mr-1"></span>
+            <span className="inline-block w-2 h-2 bg-purple-700 rounded-full mr-1"></span>
+            <span className="inline-block w-2 h-2 bg-purple-700 rounded-full"></span>
+          </h3>
           <div
             ref={myElement}
             className="flex flex-wrap justify-center items-center gap-4 px-4"
@@ -78,7 +143,7 @@ const Team = () => {
                   alt={member.name}
                   className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border-4 border-f7f7f7 shadow-lg cursor-pointer transition-transform duration-300 ease-in-out group-hover:-translate-y-1"
                 />
-                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white font-bebas text-lg py-3 px-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out -translate-y-12">
+                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full bg-purple-600 text-white font-bebas text-lg py-2 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                   {member.name}
                 </span>
               </div>
@@ -87,7 +152,10 @@ const Team = () => {
         </div>
       </section>
 
-      <section className="flex flex-col items-center bg-gray-200 py-10 px-4 min-h-screen mt-10 ">
+      <section
+        ref={teamCard}
+        className="flex flex-col items-center bg-gray-200 py-10 px-4 min-h-screen mt-10 "
+      >
         <div className="text-center">
           <h1 className="text-6xl text-purple-600 font-bold mb-2 inline-block relative uppercase font-dancing">
             About our team
@@ -98,7 +166,7 @@ const Team = () => {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="m-5 p-5 text-center cursor-pointer max-w-sm transition duration-300 ease-in-out hover:shadow-lg hover:-translate-y-5"
+              className=" bg-gray-300 m-5 p-5 text-center cursor-pointer max-w-sm transition duration-300 ease-in-out hover:shadow-lg hover:-translate-y-5"
             >
               <img
                 src={member.image}

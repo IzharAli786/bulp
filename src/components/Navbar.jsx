@@ -4,8 +4,6 @@ import NavbarToggle from "./NavbarToggle";
 
 const Navbar = () => {
   const { isOpen, toggleMenu } = NavbarToggle();
-
-  // Create a common menu list to be reused to avoid repetition
   const menuList = (
     <>
       <Link
@@ -59,39 +57,35 @@ const Navbar = () => {
 
           {/* Toggle button for smaller screens */}
           <div className="md:hidden flex items-center">
-            <button className="menu-btn" onClick={toggleMenu}>
-              {/* Toggle button for smaller screens */}
-              <div className="md:hidden flex items-center">
-                <button className="menu-btn" onClick={toggleMenu}>
-                  <svg
-                    className="h-6 w-6 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16m-7 6h7"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </button>
+            <div className="md:hidden flex items-center">
+              <button className="menu-btn" onClick={toggleMenu}>
+                <svg
+                  className="h-6 w-6 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Responsive Menu */}
       {isOpen && (
-        <div className="block md:hidden h-80 text-white py-2 bg-gradient-to-r from-[#810CA0] to-[#8C147E]">
+        <div className="block md:hidden  text-white py-2 bg-gradient-to-r from-[#810CA0] to-[#8C147E] mt-16">
           {menuList}
         </div>
       )}
     </>
   );
 };
-
 export default Navbar;

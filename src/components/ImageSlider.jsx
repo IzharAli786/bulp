@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 const images = [
   "https://images.pexels.com/photos/414191/pexels-photo-414191.jpeg",
   "https://images.pexels.com/photos/243415/pexels-photo-243415.jpeg",
@@ -8,13 +9,57 @@ const images = [
 
 const ImageSlider = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const sliderRef = useRef();
+  const intervalRef = useRef();
+  const sectionRef = useRef(null);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = [entries];
+        if (entry.isIntersecting) {
+          intervalRef.current = setInterval(nextSlide, 3000);
+        } else {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+          }
+        }
+      },
+      { threshold: 0.5 }
+    );
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000); // Change image every 3000 milliseconds (3 seconds)
+    }, 3000);
 
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const element = sectionRef.current;
+
+    const animation = gsap.fromTo(
+      element,
+      {
+        x: -200,
+        autoAlpha: 0,
+        scale: 0.95,
+      },
+      {
+        x: 0,
+        autoAlpha: 1,
+        duration: 2,
+        scale: 1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    return () => {
+      animation.kill(); // Proper cleanup to avoid memory leaks
+    };
   }, []);
 
   const nextSlide = () => {
@@ -29,6 +74,7 @@ const ImageSlider = () => {
 
   return (
     <div
+      ref={sectionRef}
       className="relative w-full overflow-hidden"
       style={{ height: "500px" }}
     >

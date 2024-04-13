@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Testimony = () => {
   const sliderContainerRef = useRef(null);
@@ -43,13 +45,42 @@ const Testimony = () => {
       slider.destroy();
     };
   }, []);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const element = sectionRef.current;
+
+    const animation = gsap.fromTo(
+      element,
+      {
+        y: -200,
+        autoAlpha: 0,
+        scale: 0.9,
+      },
+      {
+        y: 0,
+        autoAlpha: 1,
+        duration: 2,
+        scale: 1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    return () => {
+      animation.kill(); // Proper cleanup to avoid memory leaks
+    };
+  }, []);
 
   return (
-    <section className="bg-gray-50">
-      <div className="mx-auto max-w-[1340px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24 ">
+    <section ref={sectionRef} className="bg-gray-50">
+      <div className="max-w-[1600px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24 ">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center lg:gap-16">
           <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-purple-900 sm:text-4xl lg:mb-7">
               Don't just take our word for it...
             </h2>
 
@@ -62,7 +93,7 @@ const Testimony = () => {
               <button
                 aria-label="Previous slide"
                 ref={prevDesktopButtonRef}
-                className="rounded-full border border-purple-600 p-3 text-rose-600 transition hover:bg-rose-600 hover:text-white"
+                className="rounded-full border border-purple-600 p-3 text-purple-600 transition hover:bg-purple-600 hover:text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +114,7 @@ const Testimony = () => {
               <button
                 aria-label="Next slide"
                 ref={nextDesktopButtonRef}
-                className="rounded-full border border-rose-600 p-3 text-rose-600 transition hover:bg-rose-600 hover:text-white"
+                className="rounded-full border border-purple-600 p-3 text-purple-600 transition hover:bg-purple-600 hover:text-white"
               >
                 <svg
                   className="h-6 w-6"
@@ -112,7 +143,7 @@ const Testimony = () => {
                       {/* Star Rating SVGs */}
                     </div>
                     <div className="mt-4">
-                      <p className="text-2xl font-bold text-rose-600 sm:text-3xl">
+                      <p className="text-2xl font-bold text-purple-900 sm:text-3xl">
                         Stayin' Alive
                       </p>
                       <p className="mt-4 leading-relaxed text-gray-700">
@@ -136,7 +167,7 @@ const Testimony = () => {
                       {/* Star Rating SVGs */}
                     </div>
                     <div className="mt-4">
-                      <p className="text-2xl font-bold text-rose-600 sm:text-3xl">
+                      <p className="text-2xl font-bold text-purple-900 sm:text-3xl">
                         Manthar Ali{" "}
                       </p>
                       <p className="mt-4 leading-relaxed text-gray-700">

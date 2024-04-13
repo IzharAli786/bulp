@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import TextPlugin from "gsap/TextPlugin";
 
@@ -17,54 +18,53 @@ export default function HeroSection() {
         text: "Welcome to Our World",
         ease: "none",
         duration: 2,
-        delay: 1,
+        delay: 0.6,
+        immediateRender: false,
       })
-      .to(titleRef.current, { text: "", duration: 1.5 }); // Add a step to clear the text before repeating
-
-    // Setup IntersectionObserver to control the animation
+      .to(titleRef.current, { text: "", duration: 1.5 });
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             tl.play();
           } else {
-            tl.pause().time(0); // Pause and reset the timeline to its initial state
+            tl.pause().time(0.1);
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
 
     observer.observe(sectionRef.current);
-
-    // Cleanup
     return () => {
       observer.disconnect();
-      tl.kill(); // Proper cleanup to prevent memory leaks
+      tl.kill();
     };
   }, []);
 
   return (
     <div
       ref={sectionRef}
-      className="relative bg-cover bg-center h-screen flex items-center justify-center"
-      style={{ backgroundImage: `url('')` }}
+      className="relative bg-cover bg-center h-screen flex items-center justify-center bg-transparent"
+      style={{
+        backgroundImage: `url('https://plus.unsplash.com/premium_photo-1674147611133-be87db07f597?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D')`,
+      }}
     >
-      <div className="bg-gradient-to-r from-[#810CA0] to-[#8C147E] bg-opacity-50 absolute top-0 right-0 bottom-0 left-0 mb-6"></div>
+      <div className="absolute top-0 right-0 bottom-0 left-0 mb-6"></div>
       <div className="text-center p-5 relative z-10">
         <h1
           ref={titleRef}
-          className="text-white text-5xl md:text-6xl font-bold mb-4"
+          className="text-white text-5xl md:text-6xl font-bold mb-4 user-select-none"
         ></h1>
         <p className="text-white text-xl md:text-2xl mb-8">
           Innovating one project at a time
         </p>
-        <a
-          href="#services"
-          className="bg-purple-400 text-gray-800 py-3 px-6 text-lg rounded-md hover:bg-[#8644A2] transition duration-300"
+        <Link
+          to="/services"
+          className="bg-purple-700 text-gray-100 py-3 px-6 text-lg rounded-md hover:bg-[#8644A2] transition duration-300"
         >
           Explore Now
-        </a>
+        </Link>
       </div>
     </div>
   );
