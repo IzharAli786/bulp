@@ -13,123 +13,50 @@ import {
   faHandsHelping,
 } from "@fortawesome/free-solid-svg-icons";
 
+
 const Review = () => {
   const sectionRef = useRef(null);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const element = sectionRef.current;
 
     const animation = gsap.fromTo(
-      element,
-      {
-        x: -200,
-        autoAlpha: 0,
-        scale: 1,
-      },
-      {
-        x: 0,
-        autoAlpha: 1,
-        duration: 2,
-        scale: 1.05,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          toggleActions: "play none none none",
-        },
-      }
+      sectionRef.current,
+      { x: -200, autoAlpha: 0, scale: 1 },
+      { x: 0, autoAlpha: 1, duration: 2, scale: 1.05, scrollTrigger: { trigger: sectionRef.current, toggleActions: "play none none none" } }
     );
 
     return () => {
-      animation.kill(); // Proper cleanup to avoid memory leaks
+      if (animation) {
+        animation.kill();
+      }
     };
   }, []);
+
   return (
-    <div className="">
-      <h2 className="mt-10 mb-10 font-bold text-3xl text-center text-gray-500">
-        Why Choose Us!
-      </h2>
-      <section ref={sectionRef} className="py-12 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="bg-gradient-to-r from-[#810CA0] to-[#8C147E] rounded-lg shadow-xl p-8 flex flex-col items-center justify-between h-full">
-              <FontAwesomeIcon
-                icon={faStar}
-                className="text-purple-700  text-6xl mb-4"
-              />
-              <h3 className="text-xl text-white font-semibold mb-4">
-                Quality & Satisfaction
-              </h3>
-              <p className="text-white mb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-                sunt optio placeat atque adipisci animi aliquid, vitae qui rerum
-                exercitationem quasi molestias expedita quibusdam dolor quidem
-                rem vel illum! Ipsum ullam nemo, sed culpa inventore quasi
-                magnam deleniti aperiam a tempora quos perferendis qui
-                temporibus nam obcaecati sunt assumenda. Error.
-              </p>
-              <a
-                href="#"
-                className="text-purple-600 hover:text-purple-700 transition duration-300"
-              >
-                Read More
-              </a>
-            </div>
-            {/* Card 2 */}
-            <div className="bg-gradient-to-r from-[#810CA0] to-[#8C147E]  rounded-lg shadow-xl p-8 flex flex-col items-center justify-between h-full">
-              <FontAwesomeIcon
-                icon={faShieldAlt}
-                className="text-purple-600 text-6xl mb-4"
-              />
-              <h3 className="text-xl text-white font-semibold mb-4">
-                Security & Reliability
-              </h3>
-              <p className="text-white mb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam,
-                dolorum repudiandae? Ex iusto et voluptate alias ab aliquam
-                mollitia dicta molestiae consequuntur odio hic, minus commodi
-                dolor ad officia exercitationem magnam, repellendus inventore
-                sint aliquid in! Repellendus adipisci quos accusantium
-                aspernatur odit blanditiis molestias sint. Iste eaque nesciunt
-                similique. Fugit.
-              </p>
-              <a
-                href="#"
-                className="text-gray-100 hover:text-purple-300 transition duration-300"
-              >
-                Read More
-              </a>
-            </div>
-            {/* Card 3 */}
-            <div className="bg-gradient-to-r from-[#810CA0] to-[#8C147E]  rounded-lg shadow-xl p-8 flex flex-col items-center justify-between h-full">
-              <FontAwesomeIcon
-                icon={faHandsHelping}
-                className="text-purple-500 text-6xl mb-4"
-              />
-              <h3 className="text-xl text-white font-semibold mb-4">
-                Flexibility & Advice
-              </h3>
-              <p className="text-white mb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatem molestias doloribus officiis earum distinctio autem
-                aut quo mollitia. Ut quas maxime dolor odit sequi dignissimos
-                nostrum. Fugiat dolore est alias quisquam laboriosam quos
-                voluptatum ullam perspiciatis. Labore ratione deleniti fuga nam,
-                corporis, nihil eius aperiam nisi exercitationem pariatur nulla
-                obcaecati.
-              </p>
-              <a
-                href="#"
-                className="text-purple-600 hover:text-purple-700 transition duration-300"
-              >
-                Read More
-              </a>
-            </div>
-          </div>
+    <div className="container mx-auto px-4 max-w-screen-lg">
+      <h2 className="mt-10 mb-10 font-bold text-3xl text-center text-gray-500">Why Choose Us!</h2>
+      <section ref={sectionRef} className="py-12 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <ReviewCard icon={faStar} title="Quality & Satisfaction" text=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ex consectetur repudiandae ullam, provident error delectus, temporibus dolores praesentium molestiae numquam magni pariatur tenetur earum dicta voluptate exercitationem atque optio? Culpa " />
+          <ReviewCard icon={faShieldAlt} title="Security & Reliability" text=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ex consectetur repudiandae ullam, provident error delectus, temporibus dolores praesentium molestiae numquam magni pariatur tenetur earum dicta voluptate exercitationem atque optio? Culpa " />
+          <ReviewCard icon={faHandsHelping} title="Flexibility & Advice" text=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ex consectetur repudiandae ullam, provident error delectus, temporibus dolores praesentium molestiae numquam magni pariatur tenetur earum dicta voluptate exercitationem atque optio? Culpa " />
         </div>
       </section>
     </div>
   );
 };
+
+const ReviewCard = ({ icon, title,text }) => (
+  <div className="bg-gradient-to-r from-[#2C4E80] to-[#00215E]  rounded-[40px] shadow-xl p-5 flex flex-col items-center justify-between">
+    <FontAwesomeIcon icon={icon} className="text-6xl mb-4 text-white" />
+    <h3 className="text-xl text-gray-300 font-semibold mb-4">{title}</h3>
+    <p className="text-gray-300 mb-6">{text}
+    </p>
+   
+  </div>
+);
+
 function Home() {
   return (
     <>

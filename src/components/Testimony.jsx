@@ -142,7 +142,7 @@ const Testimony = () => {
                     <div className="flex gap-0.5 text-green-500">
                       {/* Star Rating SVGs */}
                     </div>
-                    <div className="mt-4">
+                    <div className="">
                       <p className="text-2xl font-bold text-purple-900 sm:text-3xl">
                         Stayin' Alive
                       </p>

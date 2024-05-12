@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const images = [
-  "https://images.pexels.com/photos/414191/pexels-photo-414191.jpeg",
-  "https://images.pexels.com/photos/243415/pexels-photo-243415.jpeg",
-  "https://images.pexels.com/photos/350749/pexels-photo-350749.jpeg",
+  "https://images.unsplash.com/photo-1557838923-2985c318be48?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGlnaXRhbCUyMG1hcmtldGluZ3xlbnwwfHwwfHx8MA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1685208193257-6830c83dc6ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGlnaXRhbCUyMG1hcmtldGluZ3xlbnwwfHwwfHx8MA%3D%3D",
+  "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGRpZ2l0YWwlMjBtYXJrZXRpbmd8ZW58MHx8MHx8fDA%3D",
 ];
 
 const ImageSlider = () => {
@@ -76,7 +77,7 @@ const ImageSlider = () => {
     <div
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      style={{ height: "500px" }}
+      style={{ height: "700px" }} 
     >
       <img
         src={images[currentImage]}
@@ -85,14 +86,14 @@ const ImageSlider = () => {
       />
       <button
         onClick={prevSlide}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-[#810CA0] to-[#8C147E] text-white p-2 rounded-full focus:outline-none z-10"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-400 p-2 rounded-full focus:outline-none z-10"
         aria-label="Previous slide"
       >
         &#10094;
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-[#810CA0] to-[#8C147E] text-white p-2 rounded-full focus:outline-none z-10"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-400 p-2 rounded-full focus:outline-none z-10"
         aria-label="Next slide"
       >
         &#10095;

@@ -124,13 +124,13 @@ const Team = () => {
       <Navbar />
       <section ref={myElement}>
         <div className=" flex flex-col items-center justify-center min-h-screen bg-gray-200 py-10 mt-10">
-          <h2 className="text-center text-6xl font-dancing font-bold text-purple-600 mb-16">
+          <h2 className="text-center text-6xl font-bold text-[#00215E] mb-16">
             Our Team
           </h2>
           <h3 className="mb-3">
-            <span className="inline-block w-2 h-2 bg-purple-700 rounded-full mr-1"></span>
-            <span className="inline-block w-2 h-2 bg-purple-700 rounded-full mr-1"></span>
-            <span className="inline-block w-2 h-2 bg-purple-700 rounded-full"></span>
+            <span className="inline-block w-2 h-2 bg-[#00215E] rounded-full mr-1"></span>
+            <span className="inline-block w-2 h-2 bg-[#00215E] rounded-full mr-1"></span>
+            <span className="inline-block w-2 h-2 bg-[#00215E] rounded-full"></span>
           </h3>
           <div
             ref={myElement}
@@ -143,7 +143,7 @@ const Team = () => {
                   alt={member.name}
                   className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border-4 border-f7f7f7 shadow-lg cursor-pointer transition-transform duration-300 ease-in-out group-hover:-translate-y-1"
                 />
-                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full bg-purple-600 text-white font-bebas text-lg py-2 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full bg-[#00215E] text-white font-bebas text-lg py-2 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                   {member.name}
                 </span>
               </div>
@@ -154,13 +154,13 @@ const Team = () => {
 
       <section
         ref={teamCard}
-        className="flex flex-col items-center bg-gray-200 py-10 px-4 min-h-screen mt-10 "
+        className="flex flex-col items-center bg-gray-200 py-10 px-4 min-h-screen mt-10"
       >
         <div className="text-center">
-          <h1 className="text-6xl text-purple-600 font-bold mb-2 inline-block relative uppercase font-dancing">
+          <h1 className="text-6xl text-[#00215E] font-bold mb-2 inline-block relative uppercase">
             About our team
           </h1>
-          <div className="h-1 w-20 bg-gradient-to-l from-transparent to-purple-500 mt-2 mx-auto"></div>
+          <div className="h-1 w-20 bg-gradient-to-l from-transparent to-blue-600 mt-2 mx-auto"></div>
         </div>
         <div className="flex flex-wrap justify-center items-center mt-10">
           {teamMembers.map((member, index) => (
@@ -171,22 +171,22 @@ const Team = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="mx-auto w-36 h-36 object-cover rounded-full border-4 border-purple-600 mb-4"
+                className="mx-auto w-36 h-36 object-cover rounded-full border-4 border-[#00215E] mb-4"
               />
-              <h2 className="text-xl text-purple-600 uppercase font-semibold mb-2">
+              <h2 className="text-xl text-[#00215E] uppercase font-semibold mb-2">
                 {member.name}
               </h2>
               <p className="text-sm text-gray-600 mb-4">{member.role}</p>
               {/* Social Icons */}
               <a
                 href={member.facebook}
-                className="mx-6 text-purple-600 hover:text-purple-700 transform hover:-translate-y-1 transition duration-300 ease-in-out"
+                className="mx-6 text-[#00215E] hover:text-blue-700 transform hover:-translate-y-1 transition duration-300 ease-in-out"
               >
                 <FontAwesomeIcon icon={faFacebook} size="2x" />
               </a>
               <a
                 href={member.linkedin}
-                className="mx-2 text-purple-600 hover:text-purple-700 transform hover:-translate-y-1 transition duration-300 ease-in-out"
+                className="mx-2 text-[#00215E] hover:text-blue-700 transform hover:-translate-y-1 transition duration-300 ease-in-out"
               >
                 <FontAwesomeIcon icon={faLinkedin} size="2x" />
               </a>

@@ -47,7 +47,7 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative bg-cover bg-center h-screen flex items-center justify-center bg-transparent"
       style={{
-        backgroundImage: `url('https://plus.unsplash.com/premium_photo-1674147611133-be87db07f597?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D')`,
+        backgroundImage: `url('https://plus.unsplash.com/premium_photo-1673306773569-4d864b99c96c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8NGslMjBwaWNzfGVufDB8fDB8fHww')`,
       }}
     >
       <div className="absolute top-0 right-0 bottom-0 left-0 mb-6"></div>

@@ -1,9 +1,12 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = () => {  
   return (
-    <footer className="bg-gradient-to-r from-[#810CA0] to-[#8C147E] text-white pt-14 pb-3 bottom-0 w-full">
+    <>
+    <div>
+    
+    <footer className="bg-[#00215E] text-white pt-14 pb-3 bottom-0 w-full mt-auto relative ">
       <div className="flex justify-between flex-col md:flex-row gap-[50px] md:gap-0">
         {/* LEFT START */}
         <div className="flex gap-[50px] md:gap-[75px] lg:gap-[200px] flex-col md:flex-row sm:flex-row md:justify-center">
@@ -12,7 +15,7 @@ const Footer = () => {
           {/* MENU END */}
 
           {/* NORMAL MENU START */}
-          <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] shrink-0">
+          <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] shrink-0 mx-auto">
             {/* MENU START */}
             <div className="flex flex-col gap-3">
               <div className="font-oswald font-large text-black  text-md upper">
@@ -38,7 +41,7 @@ const Footer = () => {
 
             {/* MENU START */}
             <div className="flex flex-col gap-3">
-              <div className="font-oswald text-2xl font-medium text-white cursor-pointer text-sm">
+              <div className="font-oswald font-medium text-white cursor-pointer text-sm">
                 Address
                 <p className="text-white">karachi tariq road </p>
               </div>
@@ -104,6 +107,8 @@ const Footer = () => {
         {/* RIGHT END */}
       </div>
     </footer>
+    </div>
+    </>
   );
 };
 
